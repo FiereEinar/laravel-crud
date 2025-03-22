@@ -27,18 +27,10 @@ class PostController extends Controller
     }
 
     public function editPostView(Post $post) {
-        if (auth()->guard('web')->id() !== $post['user_id']) {
-            return redirect('/');
-        }
-
         return view('create-post', ['title' => 'Edit post', 'post' => $post, 'method' => 'PUT']);
     }
 
     public function editPost(Post $post, Request $request) {
-        if (auth()->guard('web')->id() !== $post['user_id']) {
-            return redirect('/');
-        }
-
         $body = $request->validate([
             'title' => ['required', 'min:3', 'max:255'],
             'body' => ['required', 'min:3'],
@@ -52,10 +44,7 @@ class PostController extends Controller
     }
 
     public function deletePost(Post $post) {
-        if (auth()->guard('web')->id() === $post['user_id']) {
-            $post->delete();
-        }
-
+        $post->delete();
         return redirect('/');
     }
 }
