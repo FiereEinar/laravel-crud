@@ -18,7 +18,22 @@
     <form action="/logout" method="POST" class="flex flex-col items-center gap-3">
       @csrf
       <p>You are logged in.</p>
-      <button class="bg-blue-500 text-white px-3 py-1 rounded-md">Logout</button>
+      <div class="flex gap-3">
+        <a href="/post">
+          <button type="button" class="btn">Create post</button>
+        </a>
+        <button class="btn">Logout</button>
+      </div>
+
+      <div class="space-x-2">
+        @foreach ($posts as $post)
+        <article class="p-3 border rounded-sm shadow-sm">
+          <h3>{{$post['title']}}</h3>
+          <small>by: {{$post['user_id']}}</small>
+          <p>{{$post['body']}}</p>
+        </article>
+      </div>
+        @endforeach
     </form>
     @else
     <div>

@@ -19,3 +19,8 @@
 .input-field-container {
     @apply flex flex-col gap-1;
 }
+
+.input-field-container input,
+.input-field-container textarea {
+    @apply px-2 py-1;
+}
