@@ -16,20 +16,22 @@
 <body>
   <main class="flex justify-center items-center h-[100dvh]">
     @auth
-    <form action="/post" method="POST" class="space-y-2 p-8 border rounded-md shadow-2xl">
+    <form action="/post/{{$post->id ?? ''}}" method="POST" class="space-y-2 p-8 border rounded-md shadow-2xl">
       @csrf
-      <h2 class="text-2xl font-semibold">Create a post</h2>
+      <?php if ($method === 'PUT'): ?>
+      @method('PUT')
+      <?php endif; ?>
+      <h2 class="text-2xl font-semibold">{{$title}}</h2>
       <div class="input-field-container">
         <label for="title">Title:</label>
-        <input name="title" class="border rounded-sm" type="text" id="title">
+        <input value="{{$post->title ?? ''}}" name="title" class="border rounded-sm" type="text" id="title">
       </div>
       <div class="input-field-container">
         <label for="body">Content:</label>
-        {{-- <input name="body" class="border rounded-sm" type="text" id="body"> --}}
-        <textarea name="body" id="body" class="border rounded-sm" rows="3"></textarea>
+        <textarea name="body" id="body" class="border rounded-sm" rows="3">{{$post->body ?? ''}}</textarea>
       </div>
       <div>
-        <button class="btn">Create post</button>
+        <button class="btn">Submit</button>
       </div>
     </form>
     @else

@@ -10,7 +10,9 @@ class HomeController extends Controller
 {
     public function index() {
         $posts = Post::all();
-        return view("home", ['posts' => $posts]);
+        $currentUser = auth()->guard("web")->user();
+
+        return view("home", ['posts' => $posts, 'currentUser' => $currentUser]);
     }
 
     public function login() {
@@ -21,7 +23,4 @@ class HomeController extends Controller
         return view("register");
     }
 
-    public function createPost() {
-        return view('create-post');
-    }
 }
