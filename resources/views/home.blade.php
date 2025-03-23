@@ -34,6 +34,7 @@
         <small>By: {{$post['user']->name}}</small>
         <p>{{$post['body']}}</p>
 
+        @if ($currentUser->id === $post->user_id)
         <div class="flex gap-2 mt-2">
           <a href="/post/{{$post->id}}/edit">
             <button class="btn">Edit</button>
@@ -44,6 +45,7 @@
             <button class="btn btn-danger">Delete</button>
           </form>
         </div>
+        @endif
       </article>
       @endforeach
     </div>

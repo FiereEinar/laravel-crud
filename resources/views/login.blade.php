@@ -24,14 +24,11 @@
     <form action="/login" method="POST" class="space-y-2 p-8 border rounded-md shadow-2xl">
       @csrf
       <h2 class="text-2xl font-semibold">Login</h2>
-      <div class="input-field-container">
-        <label for="loginEmail">Email:</label>
-        <input name="loginEmail" class="border rounded-sm" type="email" id="loginEmail">
-      </div>
-      <div class="input-field-container">
-        <label for="loginPassword">Password:</label>
-        <input name="loginPassword" class="border rounded-sm" type="password" id="loginPassword">
-      </div>
+      <x-input-field name="loginEmail" label="Email:" type="email" value="{{old('loginEmail', '')}}" />
+      <x-input-field name="loginPassword" label="Password:" type="password" value="{{old('loginPassword', '')}}" />
+      @error('all')
+        <small class="text-red-500">{{$message}}</small>
+      @enderror
       <div>
         <button class="btn">Submit</button>
       </div>

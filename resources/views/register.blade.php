@@ -24,18 +24,13 @@
     <form action="/register" method="POST" class="space-y-2 p-8 border rounded-md shadow-2xl">
       @csrf
       <h2 class="text-2xl font-semibold">Register</h2>
-      <div class="input-field-container">
-        <label for="name">Name:</label>
-        <input name="name" class="border rounded-sm" type="text" id="name">
-      </div>
-      <div class="input-field-container">
-        <label for="email">Email:</label>
-        <input name="email" class="border rounded-sm" type="email" id="email">
-      </div>
-      <div class="input-field-container">
-        <label for="password">Password:</label>
-        <input name="password" class="border rounded-sm" type="password" id="password">
-      </div>
+      <x-input-field name="name" label="Name:" value="{{old('name', '')}}" />
+      <x-input-field name="email" label="Email:" value="{{old('email', '')}}" type="email" />
+      <x-input-field name="password" label="Password:" value="{{old('password', '')}}" type="password" />
+      <x-input-field name="confirmPassword" label="Confirm Password:" value="{{old('confirmPassword', '')}}" type="password" />
+      @error('all')
+        <small class="text-red-500">{{$message}}</small>
+      @enderror
       <div>
         <button class="btn">Submit</button>
       </div>

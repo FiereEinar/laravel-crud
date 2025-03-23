@@ -22,14 +22,8 @@
       @method('PUT')
       <?php endif; ?>
       <h2 class="text-2xl font-semibold">{{$title}}</h2>
-      <div class="input-field-container">
-        <label for="title">Title:</label>
-        <input value="{{$post->title ?? ''}}" name="title" class="border rounded-sm" type="text" id="title">
-      </div>
-      <div class="input-field-container">
-        <label for="body">Content:</label>
-        <textarea name="body" id="body" class="border rounded-sm" rows="3">{{$post->body ?? ''}}</textarea>
-      </div>
+      <x-input-field name="title" label="Title:" value="{{$post->title ?? old('title', '')}}" />
+      <x-input-field input="textarea" name="body" label="Content:" value="{{$post->body ?? old('body', '')}}" />
       <div>
         <button class="btn">Submit</button>
       </div>
